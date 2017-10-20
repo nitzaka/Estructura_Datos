@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class principal {
 
@@ -18,7 +20,8 @@ public class principal {
 	private JTextField txtArtista;
 	private JTextField txtGenero;
 	
-	ListaDoble Id=new ListaDoble();
+	ListaDoble listadoble=new ListaDoble();
+	private JTextField txtResul;
 
 	/**
 	 * Launch the application.
@@ -61,12 +64,12 @@ public class principal {
 			public void actionPerformed(ActionEvent arg0) {
 				NodoMusica nuevo=new NodoMusica();
 				
-				nuevo.setId(Integer.parseInt(txtId.getText()));
+				nuevo.setId(txtId.getText());
 				nuevo.setAlbum(txtAlbum.getText());
 				nuevo.setArtista(txtArtista.getText());
 				nuevo.setGenero(txtGenero.getText());
 				
-				Id.insertarAdelante(nuevo);	
+				listadoble.insertarAdelante(nuevo);	
 				JOptionPane.showMessageDialog(null, "Informacion insertada adelante!");
 				
 
@@ -78,6 +81,23 @@ public class principal {
 		frame.getContentPane().add(btnInsertarAdelante);
 		
 		JButton btnInsertarAtras = new JButton("Insertar nodo atras");
+		btnInsertarAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NodoMusica nuevo=new NodoMusica();
+				
+				nuevo.setId(txtId.getText());
+				nuevo.setAlbum(txtAlbum.getText());
+				nuevo.setArtista(txtArtista.getText());
+				nuevo.setGenero(txtGenero.getText());
+				
+				listadoble.insertarFinal(nuevo);	
+				JOptionPane.showMessageDialog(null, "Informacion insertada atras!");
+				
+
+
+				
+			}
+		});
 		btnInsertarAtras.setBounds(39, 81, 160, 23);
 		frame.getContentPane().add(btnInsertarAtras);
 		
@@ -90,10 +110,29 @@ public class principal {
 		frame.getContentPane().add(btnEliminarUltimo);
 		
 		JButton btnRecorridoAdelante = new JButton("Recorrido hacia delante");
+		btnRecorridoAdelante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtResul.setText(listadoble.mostrasrInicioaFin().toString());
+			}
+			
+		});
+		
+			
+		
 		btnRecorridoAdelante.setBounds(39, 183, 160, 23);
 		frame.getContentPane().add(btnRecorridoAdelante);
 		
 		JButton btnRecorridoAtras = new JButton("Recorrido hacia atras");
+		btnRecorridoAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRecorridoAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		btnRecorridoAtras.setBounds(39, 217, 160, 23);
 		frame.getContentPane().add(btnRecorridoAtras);
 		
@@ -142,7 +181,20 @@ public class principal {
 		txtGenero.setColumns(10);
 		
 		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtId.setText("");
+				txtAlbum.setText("");
+				txtArtista.setText("");
+				txtGenero.setText("");
+			}
+		});
 		btnLimpiar.setBounds(39, 396, 89, 23);
 		frame.getContentPane().add(btnLimpiar);
+		
+		txtResul = new JTextField();
+		txtResul.setBounds(28, 255, 276, 132);
+		frame.getContentPane().add(txtResul);
+		txtResul.setColumns(10);
 	}
 }

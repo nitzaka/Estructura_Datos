@@ -1,14 +1,14 @@
 package musica;
 
 public class NodoMusica {
-	private int id;
+	private String id;
 	private String album;
 	private String artista;
 	private String genero;
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getAlbum() {
@@ -30,6 +30,14 @@ public class NodoMusica {
 		this.genero = genero;
 	}
 	
+	public String toString() {
+		return "Id: "+this.id+" | "+"Album: "+this.album+" | "+"Artista: "+this.artista+" | "+"Genero: "+this.genero+" | ";
+	}
+	
+	public int compareto(Object o) {
+		NodoMusica temporal=(NodoMusica) o;
+		return this.id.compareTo(temporal.getId());
+		}
 	
 
 

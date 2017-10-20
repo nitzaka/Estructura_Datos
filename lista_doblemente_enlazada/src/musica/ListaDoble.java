@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class ListaDoble {
 	private NodoDoble cabeza;
-	//private NodoDoble cola;
+	private NodoDoble cola;
 	
 	public ListaDoble() {
 		this.cabeza=null;
@@ -25,11 +25,12 @@ public class ListaDoble {
 
 
 	public boolean isVacio() {
-		boolean respuesta=true;
-		if(this.cabeza!=null) {
-			respuesta=false;
+		if(cola==null && cabeza==null) {
+			return true;
+			
+		}else {
+			return false;
 		}
-		return respuesta;
 	}
 	/*
 	 public void insertar(int valor) {//se crea un metodo llamado insertar con parametro llamado valor de tipo entero
@@ -40,43 +41,46 @@ public class ListaDoble {
 		
 	} */
 	
-	public void insertar(NodoMusica informacion) {
+	/*public void insertar(NodoMusica informacion) {
 		NodoDoble nuevo=new NodoDoble();
 		nuevo.setInformacion(informacion);
 		nuevo.setSiguente(null);
 		nuevo.setAnterior(null);
 		this.cabeza=nuevo;
 		
-	}
-	
-	public void insertarAdelante(NodoMusica informacion) {
-		if(isVacio()) {
-			insertar(informacion);
-		}else {
-			NodoDoble nuevo = new NodoDoble();
-			nuevo.setInformacion(informacion);
-			nuevo.setSiguente(this.cabeza);
-			this.cabeza.setAnterior(nuevo);
-			nuevo.setAnterior(null);
-			this.cabeza=nuevo;
-		}
-	}
-	
-/*	public void insertarFinal(String dato) {
-		if(!isVacio()) {
-			cola= new NodoDoble(dato,null, cola);
-			cola.Anterior.Siguiente=cola;
-		}
-		
 	}*/
 	
-	/*public void mostrasrInicioaFin() {
+	public void insertarAdelante(NodoMusica informacion) {
+		if(cabeza==null) {
+			cabeza=new NodoDoble(informacion,null,null);
+			cola=cabeza;
+		}else {
+			NodoDoble nuevo=new NodoDoble(informacion,null,cabeza);
+			cabeza.setAnterior(nuevo);
+			cabeza=nuevo;
+		}
+		
+	}
+	
+	public void insertarFinal(NodoMusica informacion) {
+		if(cola==null) {
+			cola= new NodoDoble(informacion,null, null);
+			cabeza=cola;
+		}else {
+			NodoDoble nuevo=new NodoDoble(informacion,cola,null);
+			cola.setAnterior(nuevo);
+			cola=nuevo;
+		}
+		
+	}
+	
+	public void mostrasrInicioaFin() {
 		NodoDoble recorrer=cabeza;
 		while (recorrer!=null) {
 			String datos="<=>";
 			NodoDoble auxiliar=cabeza;
 			while (auxiliar!=null) {
-				datos=datos+"["+auxiliar.getDato()+"]<=>";
+				datos=datos+"["+auxiliar.getInformacion()+"]<=>";
 				auxiliar=auxiliar.getSiguente();
 				
 			}
@@ -84,7 +88,7 @@ public class ListaDoble {
 					"MOSTRANDO LISTA DE INICIO A FIN",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
-	}*/
+	}
 	
 
 }
