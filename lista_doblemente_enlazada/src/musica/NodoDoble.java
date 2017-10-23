@@ -5,9 +5,10 @@ public class NodoDoble {
 	private NodoDoble Siguente;
 	private NodoDoble Anterior;
 	
-	public NodoDoble(NodoMusica informacion, NodoDoble siguiente, NodoDoble anterior ) {
-		siguiente=siguiente;
-		anterior=anterior;
+	public NodoDoble(NodoMusica inf, NodoDoble sig, NodoDoble ant ) {
+		Siguente=sig;
+		Anterior=ant;
+		Informacion=inf;
 	}
 	
 	public NodoMusica getInformacion() {

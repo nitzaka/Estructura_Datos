@@ -7,10 +7,21 @@ public class ListaDoble {
 	private NodoDoble cabeza;
 	private NodoDoble cola;
 	
+	
+
 	public ListaDoble() {
-		this.cabeza=null;
+		cabeza=null;
+		cola=null;
 		
+	}	
+	public NodoDoble getCola() {
+		return cola;
 	}
+
+	public void setCola(NodoDoble cola) {
+		this.cola = cola;
+	}
+
 	
 	public NodoDoble getCabeza() {
 		return cabeza;
@@ -56,7 +67,7 @@ public class ListaDoble {
 			cola=cabeza;
 		}else {
 			NodoDoble nuevo=new NodoDoble(informacion,null,cabeza);
-			cabeza.setAnterior(nuevo);
+			cabeza.setSiguente(nuevo);
 			cabeza=nuevo;
 		}
 		
@@ -74,21 +85,60 @@ public class ListaDoble {
 		
 	}
 	
-	public void mostrasrInicioaFin() {
-		NodoDoble recorrer=cabeza;
-		while (recorrer!=null) {
-			String datos="<=>";
-			NodoDoble auxiliar=cabeza;
-			while (auxiliar!=null) {
-				datos=datos+"["+auxiliar.getInformacion()+"]<=>";
-				auxiliar=auxiliar.getSiguente();
+	public StringBuilder mostrasrInicioaFin() {
+		StringBuilder recorrer=new StringBuilder();
+		NodoDoble temporal=cola;
+		recorrer.append("NULL <==>");
+		while (temporal!=null) {
+			recorrer.append(temporal.getInformacion());
+			recorrer.append("<==>");
+			temporal=temporal.getSiguente();
 				
 			}
-			JOptionPane.showMessageDialog(null, datos,
-					"MOSTRANDO LISTA DE INICIO A FIN",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
+			recorrer.append("NULL");
+			return recorrer;
+		
 	}
 	
+	public StringBuilder mostrasrFinaInicio() {
+		StringBuilder recorrer=new StringBuilder();
+		NodoDoble temporal=cabeza;
+		recorrer.append("NULL <==>");
+		while (temporal!=null) {
+			recorrer.append(temporal.getInformacion());
+			recorrer.append("<==>");
+			temporal=temporal.getAnterior();
+				
+			}
+			recorrer.append("NULL");
+			return recorrer;
+		
+	}
+	
+	public NodoMusica eliminarCola(){
+		NodoMusica dato=cola.getInformacion();
+		cola=cola.getAnterior();
+		
+		if(cola!=null){
+			cola.setSiguente(null);;
+		}
+		else{
+			cabeza=null;
+		}
+		return dato;
+	}
+	
+	public NodoMusica eliminarCabeza(){
+		NodoMusica dato=cabeza.getInformacion();
+		cabeza=cabeza.getSiguente();
+		
+		if(cabeza!=null){
+			cabeza.setAnterior(null);
+		}
+		else{
+			cola=null;
+		}
+		return dato;
+	}
 
 }

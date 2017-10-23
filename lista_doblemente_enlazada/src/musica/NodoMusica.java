@@ -29,9 +29,9 @@ public class NodoMusica {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	
+	@Override
 	public String toString() {
-		return "Id: "+this.id+" | "+"Album: "+this.album+" | "+"Artista: "+this.artista+" | "+"Genero: "+this.genero+" | ";
+		return "| Id: "+this.id+" | "+"Album: "+this.album+" | "+"Artista: "+this.artista+" | "+"Genero: "+this.genero+" | ";
 	}
 	
 	public int compareto(Object o) {
